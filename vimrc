@@ -9,6 +9,13 @@ set nocompatible
 "                                 Plugins                                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" automatically install vimplugged if not already
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall | source $MYVIMRC
+"endif
+
 call plug#begin('~/.vim/plugged')
 
 " colorsheme
@@ -128,6 +135,42 @@ set showmatch
 set mat=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Plugin Settings                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Airline
+let g:airline_powerline_fonts=1
+
+" Gruvbox
+" let g:gruvbox_italic=0
+
+" Vim Instant Markdown
+let g:instant_markdown_autostart = 0
+autocmd FileType markdown nnoremap <C-e> :InstantMarkdownPreview<cr>
+
+" Tagbar default binding tab
+nnoremap <C-i> :TagbarToggle<cr>
+
+" NERDtree
+nnoremap <leader>n :NERDTreeToggle<cr>
+
+" CtrlP
+nnoremap <Space> :CtrlP<cr>
+nnoremap <leader>g :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <leader>w :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+" Sets cache dir for ctrlp (not needed anymore for nvme ssd)
+" let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
+" Sets ctrlp's search algorithm to the_silver_searcher
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -u -l --nocolor -g ""'
+endif
+
+let g:ctrlp_show_hidden = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Remaps                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -160,12 +203,14 @@ inoremap <leader>s <Esc>:w<CR>a
 nnoremap <leader>g :w !sudo tee % > /dev/null<CR>
 inoremap <leader>g <Esc>:w !sudo tee % > /dev/null<CR><CR>a
 
+nnoremap <leader>f :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
 
 " quit vim remap
-nnoremap <leader>q :q!<CR>
-inoremap <leader>q <Esc>:q!<CR>
+nnoremap <leader>q :wq<CR>
+inoremap <leader>q <Esc>:wq<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Auto Commands                                "
@@ -205,39 +250,3 @@ function! g:ToggleNuMode()
 endfunc
 
 nnoremap <C-l> :call g:ToggleNuMode()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              Plugin Settings                               "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Airline
-let g:airline_powerline_fonts=1
-
-" Gruvbox
-" let g:gruvbox_italic=0
-
-" Vim Instant Markdown
-let g:instant_markdown_autostart = 0
-autocmd FileType markdown nnoremap <C-e> :InstantMarkdownPreview<cr>
-
-" Tagbar default binding tab
-nnoremap <C-i> :TagbarToggle<cr>
-
-" NERDtree
-nnoremap <leader>n :NERDTreeToggle<cr>
-
-" CtrlP
-nnoremap <Space> :CtrlP<cr>
-nnoremap <leader>f :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <leader>w :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
-" Sets cache dir for ctrlp (not needed anymore for nvme ssd)
-" let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-
-" Sets ctrlp's search algorithm to the_silver_searcher
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -u -l --nocolor -g ""'
-endif
-
-let g:ctrlp_show_hidden = 1
