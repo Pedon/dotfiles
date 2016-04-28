@@ -1,13 +1,14 @@
-#
-# Sarp's zsh config
-#
+# Author: Sarp Orgul
+# File: .zshrc
+# ------------------
+# zsh settings
 
 # set term 256 color
 export TERM="xterm-256color"
 
-#
-# powerlevel 9k achieved. we did it boys
-#
+# ----------------------
+# Powerlevel 9k Achieved
+# ----------------------
 
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
@@ -20,17 +21,23 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
-#
+# -------
 # Aliases
-#
+# -------
+
 alias sudo='sudo -E'
+
+# ----------------
+# General Settings
+# ----------------
 
 # better completion
 autoload -Uz compinit promptinit
 compinit
 promptinit
 
-#
+# make default editor vim
+export EDITOR='vim'
 
 # adds transparency
 [ -n "$XTERM_VERSION" ] && transset-df -a >/dev/null
@@ -44,9 +51,11 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
 
 zstyle ':completion:*' menu select # arrow keys for completion
 
+# -----------------------
 # File managment mappings
-# Alt+up - parent dir
+# -----------------------
 
+# Alt+up - parent dir
 cdUndoKey() {
   popd      > /dev/null
   zle       reset-prompt
@@ -66,4 +75,3 @@ cdParentKey() {
 zle -N                 cdParentKey
 bindkey '^[[1;3A'      cdParentKey
 
-export EDITOR='vim'

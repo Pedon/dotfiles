@@ -1,13 +1,13 @@
 " Author: Sarp Orgul
 " File: .vimrc
 " ------------------
-" Vim Settings
+" vim Settings
 
 set nocompatible
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Plugins                                    "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------
+" Plugins
+" -------
 
 " automatically install vimplugged if not already
 "if empty(glob('~/.vim/autoload/plug.vim'))
@@ -57,9 +57,9 @@ Plug 'suan/vim-instant-markdown' "markdown preview in vim
 " Add plugins to &runtimepath
 call plug#end()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Visual Settings                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ---------------
+" Visual Settings
+" ---------------
 
 syntax on
 colorscheme base16-default
@@ -84,9 +84,9 @@ set t_Co=256
 set tabstop=4
 set shiftwidth=4
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Gui Settings                                   "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------
+" GUI Settings
+" ------------
 
 " for getting rid of annoying flashing and beeping
 set guioptions-=m
@@ -108,9 +108,7 @@ set guifont=Inconsolata\ for\ Powerline\ 12
 autocmd FileChangedRO * echohl WarningMsg | echo "File Changed RO" | echohl None
 autocmd FileChangedShell * echohl WarningMsg | echo "File Changed Shell" | echohl None
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                Vim Settings                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " search settings
 set incsearch " search as you type
