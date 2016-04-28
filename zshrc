@@ -2,15 +2,28 @@
 # Sarp's zsh config
 #
 
+# set term 256 color
+export TERM="xterm-256color"
+
 #
 # powerlevel 9k achieved. we did it boys
 #
 
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs time vi_mode root_indicator)
 
+POWERLEVEL9K_IP_INTERFACE=wlo1
+
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
+#
+# Aliases
+#
+alias sudo='sudo -E'
 
 # better completion
 autoload -Uz compinit promptinit
