@@ -25,8 +25,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 # Aliases
 # -------
 
-alias sudo='sudo -E'
-
+alias sudu='sudo -E'
 alias grep='grep --color=auto'
 
 alias ls='ls --color=auto'
