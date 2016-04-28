@@ -24,10 +24,10 @@ if [ -f "$usermodmap" ]; then
 fi
 
 # start the window manager
-#sxhkd &
-#xsetroot -cursor_name left_ptr &
-#exec bspwm
+sxhkd &
+xsetroot -cursor_name left_ptr &
+exec bspwm
 
-exec gnome-session
+#exec gnome-session
 
 #exec i3
