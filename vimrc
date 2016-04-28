@@ -23,6 +23,7 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 
 " vim interface
+Plug 'mhinz/vim-startify' "new start page
 Plug 'bling/vim-airline' "airline bar
 
 Plug 'kien/ctrlp.vim' "fuzzy finder
@@ -38,7 +39,7 @@ Plug 'terryma/vim-multiple-cursors' "for sublime like editing in vim
 " git plugins
 Plug 'tpope/vim-fugitive' "git commands in vim
 Plug 'airblade/vim-gitgutter' "git diff in left bar
-
+Plug 'chrisbra/csv.vim' "csv cool stuff
 " vim tags
 Plug 'majutsushi/tagbar' "shows tags from file
 Plug 'xolox/vim-misc' "dep for easytags
@@ -209,8 +210,8 @@ nnoremap <leader>f :%s/\<<C-r><C-w>\>//g<Left><Left>
 imap <C-BS> <C-W>
 
 " quit vim remap
-nnoremap <leader>q :wq<CR>
-inoremap <leader>q <Esc>:wq<CR>
+nnoremap <leader>q :q!<CR>
+inoremap <leader>q <Esc>:q!<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Auto Commands                                "
