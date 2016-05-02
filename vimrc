@@ -1,7 +1,7 @@
 " Author: Sarp Orgul
 " File: .vimrc
 " ------------------
-" vim Settings
+" Vim Settings
 
 set nocompatible
 
@@ -23,23 +23,18 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 
 " vim interface
-Plug 'mhinz/vim-startify' "new start page
 Plug 'bling/vim-airline' "airline bar
 
 Plug 'kien/ctrlp.vim' "fuzzy finder
 Plug 'tacahiroy/ctrlp-funky' "ctrlp extention to jump to functions
 
 Plug 'scrooloose/syntastic' "syntax highlighting
-Plug 'scrooloose/nerdtree' "foldertree-bar
 Plug 'nathanaelkane/vim-indent-guides' "shows vim indents
-
-" speeding up vim
-Plug 'terryma/vim-multiple-cursors' "for sublime like editing in vim
 
 " git plugins
 Plug 'tpope/vim-fugitive' "git commands in vim
 Plug 'airblade/vim-gitgutter' "git diff in left bar
-Plug 'chrisbra/csv.vim' "csv cool stuff
+
 " vim tags
 Plug 'majutsushi/tagbar' "shows tags from file
 Plug 'xolox/vim-misc' "dep for easytags
@@ -133,9 +128,9 @@ set clipboard=unnamedplus
 set showmatch
 set mat=2
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              Plugin Settings                               "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ---------------
+" Plugin Settings
+" ---------------
 
 " Airline
 let g:airline_powerline_fonts=1
@@ -149,9 +144,6 @@ autocmd FileType markdown nnoremap <C-e> :InstantMarkdownPreview<cr>
 
 " Tagbar default binding tab
 nnoremap <C-i> :TagbarToggle<cr>
-
-" NERDtree
-nnoremap <leader>n :NERDTreeToggle<cr>
 
 " CtrlP
 nnoremap <Space> :CtrlP<cr>
@@ -169,9 +161,9 @@ endif
 
 let g:ctrlp_show_hidden = 1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   Remaps                                   "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------
+" Remaps
+" ------
 
 " Run external commands withing vim with this remap
 nnoremap Q !!sh<CR>
@@ -211,9 +203,9 @@ imap <C-BS> <C-W>
 nnoremap <leader>q :q!<CR>
 inoremap <leader>q <Esc>:q!<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               Auto Commands                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------
+" Auto Commands
+" -------------
 
 " Compiling Remaps Supports (Python,LaTeX,Java,R,sh) TODO: add C, C++ support
 set filetype=on
