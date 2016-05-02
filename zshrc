@@ -33,6 +33,10 @@ alias la='ls -a'
 alias ll='ls -l'
 alias l='ls'
 
+alias c='clear'
+alias e='exit'
+alias t='tmux'
+
 # ----------------
 # General Settings
 # ----------------
