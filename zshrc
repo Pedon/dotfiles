@@ -41,6 +41,11 @@ alias t='tmux'
 # General Settings
 # ----------------
 
+# setup history
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
 # better completion
 autoload -Uz compinit promptinit
 compinit
