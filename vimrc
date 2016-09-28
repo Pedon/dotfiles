@@ -150,7 +150,8 @@ nnoremap <Space> :CtrlP<cr>
 nnoremap <leader>g :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <leader>w :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
+" set's ctrlp working directory on startup
+let g:ctrlp_working_path_mode = 0
 " Sets cache dir for ctrlp (not needed anymore for nvme ssd)
 " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 

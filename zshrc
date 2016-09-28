@@ -13,7 +13,7 @@ export TERM="xterm-256color"
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs time vi_mode root_indicator)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs time vi_mode root_indicator)
 
 POWERLEVEL9K_IP_INTERFACE=wlo1
 
