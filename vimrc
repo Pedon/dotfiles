@@ -57,9 +57,10 @@ call plug#end()
 " ---------------
 
 syntax on
-colorscheme base16-default
+colorscheme base16-default-dark
 let base16colorspace=256
 set background=dark
+set colorcolumn=80
 
 
 set encoding=utf8
@@ -76,6 +77,7 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 set t_Co=256
 
 " tabs w/ tab char equiv to four spaces
+set expandtab
 set tabstop=4
 set shiftwidth=4
 
@@ -147,7 +149,7 @@ nnoremap <C-i> :TagbarToggle<cr>
 
 " CtrlP
 nnoremap <Space> :CtrlP<cr>
-nnoremap <leader>g :CtrlPFunky<Cr>
+nnoremap <leader><Space> :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <leader>w :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " set's ctrlp working directory on startup
