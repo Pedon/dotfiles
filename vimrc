@@ -129,7 +129,7 @@ set foldmethod=marker
 set undolevels=1000
 set backspace=2
 set backspace=indent,eol,start
-set clipboard=unnamedplus
+set clipboard^=unnamedplus,unnamed
 
 " bracket matching
 set showmatch
