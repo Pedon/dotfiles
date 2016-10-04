@@ -25,9 +25,14 @@ Plug 'chriskempson/base16-vim'
 " vim interface
 Plug 'bling/vim-airline' "airline bar
 
+" undo
+Plug 'sjl/gundo.vim' "gundo from gir mirror
+
+" fuzzy finding
 Plug 'kien/ctrlp.vim' "fuzzy finder
 Plug 'tacahiroy/ctrlp-funky' "ctrlp extention to jump to functions
 
+" code looks good
 Plug 'scrooloose/syntastic' "syntax highlighting
 Plug 'nathanaelkane/vim-indent-guides' "shows vim indents
 
@@ -105,7 +110,7 @@ set guifont=Inconsolata\ for\ Powerline\ 12
 autocmd FileChangedRO * echohl WarningMsg | echo "File Changed RO" | echohl None
 autocmd FileChangedShell * echohl WarningMsg | echo "File Changed Shell" | echohl None
 
-
+set dir=~/.vim/_swap//
 
 " search settings
 set incsearch " search as you type
@@ -145,7 +150,10 @@ let g:instant_markdown_autostart = 0
 autocmd FileType markdown nnoremap <C-e> :InstantMarkdownPreview<cr>
 
 " Tagbar default binding tab
-nnoremap <C-i> :TagbarToggle<cr>
+nnoremap <C-t> :TagbarToggle<cr>
+
+" Gundo toggle
+nnoremap <C-i> :GundoToggle<cr>
 
 " CtrlP
 nnoremap <Space> :CtrlP<cr>
