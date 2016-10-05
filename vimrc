@@ -110,7 +110,16 @@ set guifont=Inconsolata\ for\ Powerline\ 12
 autocmd FileChangedRO * echohl WarningMsg | echo "File Changed RO" | echohl None
 autocmd FileChangedShell * echohl WarningMsg | echo "File Changed Shell" | echohl None
 
+" put swap files in same dir
 set dir=~/.vim/_swap//
+
+" turn on undo files, put them in a common location
+set undofile
+set undodir=~/.vim/_undo/
+
+" backup files (~) in a common location if possible
+set backup
+set backupdir=~/.vim/_backup/,~/tmp,.
 
 " search settings
 set incsearch " search as you type
@@ -159,7 +168,7 @@ nnoremap <C-i> :GundoToggle<cr>
 nnoremap <Space> :CtrlP<cr>
 nnoremap <leader><Space> :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
-nnoremap <leader>w :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <leader>f :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " set's ctrlp working directory on startup
 let g:ctrlp_working_path_mode = 0
 " Sets cache dir for ctrlp (not needed anymore for nvme ssd)
@@ -199,16 +208,16 @@ vnoremap jk <Esc>
 nnoremap <leader>h :let @/ = ""<CR>
 inoremap <leader>h <Esc>:let @/ = ""<CR>a
 
-" Ctrl S for save Ctrl G for sudo save
+" Ctrl S for save Ctrl G for sudo sav
 nnoremap <leader>s :w<CR>
 inoremap <leader>s <Esc>:w<CR>a
 nnoremap <leader>g :w !sudo tee % > /dev/null<CR>
 inoremap <leader>g <Esc>:w !sudo tee % > /dev/null<CR><CR>a
 
-nnoremap <leader>f :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " map control-backspace to delete the previous word
-imap <C-BS> <C-W>
+imap <C-backspace> <C-W>
 
 " quit vim remap
 nnoremap <leader>q :q!<CR>
