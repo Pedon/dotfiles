@@ -32,6 +32,8 @@ Plug 'sjl/gundo.vim' "gundo from gir mirror
 Plug 'kien/ctrlp.vim' "fuzzy finder
 Plug 'tacahiroy/ctrlp-funky' "ctrlp extention to jump to functions
 
+Plug 'tpope/vim-commentary'
+
 " code looks good
 Plug 'scrooloose/syntastic' "syntax highlighting
 Plug 'nathanaelkane/vim-indent-guides' "shows vim indents
