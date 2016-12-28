@@ -6,6 +6,9 @@
 # set term 256 color
 export TERM="xterm-256color"
 
+# because fuck
+eval "$(thefuck --alias)"
+
 # ----------------------
 # Powerlevel 9k Achieved
 # ----------------------
@@ -37,6 +40,8 @@ alias c='clear'
 alias e='exit'
 alias t='tmux'
 
+alias neo='neofetch --image ~/Wallpapers/mountainsea.jpg'
+
 # ----------------
 # General Settings
 # ----------------
@@ -55,7 +60,7 @@ promptinit
 export EDITOR='vim'
 
 # adds transparency
-[ -n "$XTERM_VERSION" ] && transset-df -a >/dev/null
+#[ -n "$XTERM_VERSION" ] && transset-df -a >/dev/null
 
 # makes control work properly
 stty -ixon
