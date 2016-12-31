@@ -124,7 +124,10 @@ super + Return
 	uxterm
 
 super + space
-	rofi -show run -terminal xterm -font 'Inconsolata 24' -lines 5 -bw 3 -bc "#70c2a7"
+	rofi -show run -terminal xterm -font 'Inconsolata 24' -lines 5 -bw 6
+
+super + shift + space
+    scrot
 
 # make sxhkd reload its configuration files:
 super + Escape
