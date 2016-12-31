@@ -64,7 +64,7 @@ call plug#end()
 " ---------------
 
 syntax on
-colorscheme base16-default-dark
+colorscheme gruvbox
 let base16colorspace=256
 set background=dark
 set colorcolumn=80
