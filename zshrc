@@ -66,8 +66,8 @@ export EDITOR='vim'
 stty -ixon
 
 # base16 Shell Colors
-BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+#BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-3024.sh"
+#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 zstyle ':completion:*' menu select # arrow keys for completion
 
@@ -94,4 +94,3 @@ cdParentKey() {
 
 zle -N                 cdParentKey
 bindkey '^[[1;3A'      cdParentKey
-
