@@ -28,6 +28,7 @@ setxkbmap -option ctrl:nocaps
 # start the window manager
 sxhkd &
 xsetroot -cursor_name left_ptr &
+
 exec bspwm
 
 #exec gnome-session

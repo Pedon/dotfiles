@@ -19,9 +19,9 @@ bspc config click_to_focus true
 #bspc config focused_border_color "#ccffe6"
 #bspc config normal_border_color "#001a0d"
 
-bspc monitor eDP1 -d 1 2 3 4
+bspc monitor eDP1 -d 1 2 3 4 5
 
-bspc monitor HDMI1 -d 5
+bspc monitor HDMI1 -d 6
 
 #bspc rule -a Chromium desktop=^5
 bspc rule -a Gimp state=floating
@@ -30,3 +30,4 @@ nitrogen --restore
 polybar top &
 compton &
 redshift &
+conky &

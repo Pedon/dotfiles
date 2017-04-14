@@ -5,10 +5,6 @@
 
 set nocompatible
 
-" -------
-" Plugins
-" -------
-
 " automatically install vimplugged if not already
 "if empty(glob('~/.vim/autoload/plug.vim'))
 "  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -18,12 +14,24 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
+" neovim specific configuration
+if has("nvim")
+   " ....
+endif
+
 " colorsheme
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 
 " vim interface
-Plug 'bling/vim-airline' "airline bar
+Plug 'vim-airline/vim-airline' "airline bar
+Plug 'vim-airline/vim-airline-themes'
+
+" Async completion framewor
+Plug 'maralla/completor.vim'
+
+" Table creation ez
+Plug 'dhruvasagar/vim-table-mode'
 
 " undo
 Plug 'sjl/gundo.vim' "gundo from gir mirror
@@ -32,11 +40,18 @@ Plug 'sjl/gundo.vim' "gundo from gir mirror
 Plug 'kien/ctrlp.vim' "fuzzy finder
 Plug 'tacahiroy/ctrlp-funky' "ctrlp extention to jump to functions
 
-Plug 'tpope/vim-commentary'
+" tim pope is awesome
+Plug 'tpope/vim-commentary' "easy commenting
+Plug 'tpope/vim-surround' "easy editing surrounding stuff
 
 " code looks good
-Plug 'scrooloose/syntastic' "syntax highlighting
-Plug 'nathanaelkane/vim-indent-guides' "shows vim indents
+Plug 'w0rp/ale' "syntax highlighting
+
+" plugin for sml files
+Plug 'jez/vim-better-sml' "for comfort in sml
+
+" for better c editing
+Plug 'vim-scripts/a.vim' "allows easy switching between header and source files
 
 " git plugins
 Plug 'tpope/vim-fugitive' "git commands in vim
@@ -50,8 +65,10 @@ Plug 'xolox/vim-easytags' "tag generation from files
 " prose editing
 Plug 'junegunn/goyo.vim' "distraction free mode in vim
 
-" document conversion
+" markdown stuff
 Plug 'vim-pandoc/vim-pandoc' "for pandoc and markdown in vim
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tpope/vim-markdown' "markdown in vim
 
 " markdown
 Plug 'suan/vim-instant-markdown' "markdown preview in vim
@@ -69,10 +86,17 @@ let base16colorspace=256
 set background=dark
 set colorcolumn=80
 
+" sets gruvbox
+set t_ZH=[3m
+set t_ZR=[23m
+let g:gruvbox_italic=1
+let g:gruvbox_bold=1
+let g:gruvbox_termcolors=256
+let g:gruvbox_underline=1
 
 set encoding=utf8
 set lazyredraw
-set autoindent
+set smartindent
 set wrap
 syntax enable
 set number
@@ -85,8 +109,8 @@ set t_Co=256
 
 " tabs w/ tab char equiv to four spaces
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 " ------------
 " GUI Settings
@@ -146,12 +170,29 @@ set clipboard^=unnamedplus,unnamed
 set showmatch
 set mat=2
 
+" mouse usage
+set mouse=n
+
 " ---------------
 " Plugin Settings
 " ---------------
 
+" Use tab to go through autocomplete
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+let g:completor_clang_binary = '/usr/bin/clang'
+let g:completor_python_binary = '/usr/bin/python3'
+
 " Airline
 let g:airline_powerline_fonts=1
+
+if has("autocmd")
+    au BufReadPost *.rkt,*.rktl set filetype=racket
+    au filetype racket set lisp
+    au filetype racket set autoindent
+endif
 
 " Gruvbox
 " let g:gruvbox_italic=0
@@ -176,12 +217,15 @@ let g:ctrlp_working_path_mode = 0
 " Sets cache dir for ctrlp (not needed anymore for nvme ssd)
 " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
-" Sets ctrlp's search algorithm to the_silver_searcher
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -u -l --nocolor -g ""'
+" Sets ctrlp's search program to ripgrep
+if executable('rg')
+    set grepprg=rg\ --color=never
+    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    let g:ctrlp_use_caching = 0
 endif
 
-let g:ctrlp_show_hidden = 1
+" vim ignores .git, tmp dirs, and swap files
+set wildignore+=*/.git/*,*/tmp/*,*.swp
 
 " ------
 " Remaps
@@ -189,6 +233,9 @@ let g:ctrlp_show_hidden = 1
 
 " Run external commands withing vim with this remap
 nnoremap Q !!sh<CR>
+
+" remap ; to : in normal mode for entering command mode
+noremap ; :
 
 " Arrow Keys BEGONE
 inoremap  <Up>     <NOP>
@@ -218,8 +265,8 @@ inoremap <leader>g <Esc>:w !sudo tee % > /dev/null<CR><CR>a
 
 nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
 
-" map control-backspace to delete the previous word
-imap <C-backspace> <C-W>
+" map control-backspace to delete the previous word (only in gvim)
+imap <C-BS> <C-W>
 
 " quit vim remap
 nnoremap <leader>q :q!<CR>
@@ -249,9 +296,15 @@ autocmd FileType python nnoremap <C-e> :call RunWith("python")<cr>
 autocmd FileType java nnoremap <C-e> :call RunWith("javac")<cr><cr>:call CuzJavaIsStupid("java")<cr>
 autocmd FileType r nnoremap <C-e> :call RunWith("Rscript")<cr>
 autocmd FileType sh nnoremap <C-e> :w<cr>:!./%<cr>
+autocmd FileType sml nnoremap <C-e> :w<cr>:call RunWith("rlwrap -c sml")<cr>
+autocmd FileType ruby nnoremap <C-e> :w<cr>:call RunWith("ruby")<cr>
 
-" all md files are markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" sml comments play nice with commentary
+autocmd FileType sml setlocal commentstring=(*%s*)
+
+" for sml syntax conceal
+" autocmd FileType sml setlocal conceallevel=2
+" let g:sml_greek_tyvar_show_tick = 1
 
 " swap absolute and relative line numbers
 function! g:ToggleNuMode()
@@ -263,3 +316,24 @@ function! g:ToggleNuMode()
 endfunc
 
 nnoremap <C-l> :call g:ToggleNuMode()<cr>
+
+" Read-only .doc through antiword
+autocmd BufReadPre *.doc silent set ro
+autocmd BufReadPost *.doc silent %!antiword "%"
+
+" " Read-only odt/odp through odt2txt
+" autocmd BufReadPre *.odt,*.odp silent set ro
+" autocmd BufReadPost *.odt,*.odp silent %!odt2txt "%"
+
+" Read-only pdf through pdftotext
+autocmd BufReadPre *.pdf silent set ro
+autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" - | fmt -w78
+
+" " Read-only rtf through unrtf
+" autocmd BufReadPre *.rtf silent set ro
+" autocmd BufReadPost *.rtf silent %!unrtf --text
+
+autocmd BufReadPost *.doc,*.docx,*.rtf,*.odp,*.odt silent %!pandoc "%" -tplain -o /dev/stdout
+
+"autocmd BufReadPost *.doc,*.docx,*.rtf,*.odp,*.odt silent %!pandoc "%" -tplain -o /dev/stdout
+let g:zipPlugin_ext='*.zip,*.jar,*.xpi,*.ja,*.war,*.ear,*.celzip,*.oxt,*.kmz,*.wsz,*.xap,*.docm,*.dotx,*.dotm,*.potx,*.potm,*.ppsx,*.ppsm,*.pptx,*.pptm,*.ppam,*.sldx,*.thmx,*.xlam,*.xlsx,*.xlsm,*.xlsb,*.xltx,*.xltm,*.xlam,*.crtx,*.vdw,*.glox,*.gcsx,*.gqsx'

@@ -6,7 +6,7 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="vimrc zshrc xinitrc Xresources config/bspwmrc config/polybar/config config/sxhkd/sxhkdrc config/compton.conf"
+files="vimrc zshrc xinitrc Xresources config/conky/conky.conf config/bspwmrc config/polybar/config config/sxhkd/sxhkdrc config/compton.conf"
 
 # make scripts executable
 # sudo chmod +x scripts/*

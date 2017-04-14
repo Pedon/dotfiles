@@ -6,7 +6,7 @@ urxvt*background: #000000
 urxvt*foreground: #ffffff
 urxvt*scrollBar: false
 
-xterm*faceName: Inconsolata for Powerline:pixelsize=32
+xterm*faceName: Inconsolata for Powerline:pixelsize=28
 xterm*termName: xterm-256color
 XTerm*locale: true
 XTerm*metaSendsEscape: true
