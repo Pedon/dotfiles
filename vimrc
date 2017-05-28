@@ -302,6 +302,12 @@ autocmd FileType ruby nnoremap <C-e> :w<cr>:call RunWith("ruby")<cr>
 " sml comments play nice with commentary
 autocmd FileType sml setlocal commentstring=(*%s*)
 
+" tabs w/ tab char equiv to four spaces in java
+autocmd FileType java set expandtab
+autocmd FileType java set tabstop=4
+autocmd FileType java set shiftwidth=4
+
+
 " for sml syntax conceal
 " autocmd FileType sml setlocal conceallevel=2
 " let g:sml_greek_tyvar_show_tick = 1
