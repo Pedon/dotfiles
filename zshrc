@@ -9,9 +9,6 @@ export TERM="xterm-256color"
 # I should not have to do this myself...
 #export PATH=/usr/lib/smlnj/bin/:${PATH}
 
-# because fuck
-eval "$(thefuck --alias)"
-
 export BROWSER=chromium
 
 # make rvm work properly

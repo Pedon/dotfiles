@@ -64,6 +64,7 @@ Plug 'xolox/vim-easytags' "tag generation from files
 
 " prose editing
 Plug 'junegunn/goyo.vim' "distraction free mode in vim
+Plug 'junegunn/limelight.vim' "limelight follows cursor in vim
 
 " markdown stuff
 Plug 'vim-pandoc/vim-pandoc' "for pandoc and markdown in vim
@@ -234,6 +235,10 @@ set wildignore+=*/.git/*,*/tmp/*,*.swp
 " Run external commands withing vim with this remap
 nnoremap Q !!sh<CR>
 
+" Fuck this is amazing
+" nnoremap W !tungsten | sed -n '/Result/{n;p}'<CR>
+nnoremap W .w tungsten<CR>
+
 " remap ; to : in normal mode for entering command mode
 noremap ; :
 
@@ -292,10 +297,10 @@ endfunction
 
 autocmd FileType tex nnoremap <C-e> :call RunWith("pdflatex")<cr>
 autocmd FileType bib nnoremap <C-e> :call RunWith("bibtex")<cr>
-autocmd FileType python nnoremap <C-e> :call RunWith("python")<cr>
 autocmd FileType java nnoremap <C-e> :call RunWith("javac")<cr><cr>:call CuzJavaIsStupid("java")<cr>
 autocmd FileType r nnoremap <C-e> :call RunWith("Rscript")<cr>
 autocmd FileType sh nnoremap <C-e> :w<cr>:!./%<cr>
+autocmd FileType python nnoremap <C-e> :w<cr>:!./%<cr>
 autocmd FileType sml nnoremap <C-e> :w<cr>:call RunWith("rlwrap -c sml")<cr>
 autocmd FileType ruby nnoremap <C-e> :w<cr>:call RunWith("ruby")<cr>
 
@@ -307,6 +312,13 @@ autocmd FileType java set expandtab
 autocmd FileType java set tabstop=4
 autocmd FileType java set shiftwidth=4
 
+" python PEP8 indentation
+autocmd FileType python set tabstop=4
+autocmd FileType python set softtabstop=4
+autocmd FileType python set shiftwidth=4
+autocmd FileType python set expandtab
+autocmd FileType python set autoindent
+autocmd FileType python set fileformat=unix
 
 " for sml syntax conceal
 " autocmd FileType sml setlocal conceallevel=2
